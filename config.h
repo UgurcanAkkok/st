@@ -86,45 +86,32 @@ float alpha = 0.8;
  */
 unsigned int tabspaces = 8;
 
-/* Terminal colors (16 first used in escape sequence) */
-static const char *colorname[] = {
-	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
-
-	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
-
-	[255] = 0,
-
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
-    "black",
+/* Terminal colors (16 used in escape sequence) */
+static const char *palettes[][16] = {
+    {"black", "red3", "green3", "yellow3", "blue2", "magenta3", "cyan3", "gray90",
+    "gray50", "red", "green", "yellow", "#5c5cff", "magenta", "cyan", "white"},
+    {"#223", "#900", "#080", "#fe7", "#35e", "#fc5", "#18e", "#aaa",
+    "#666", "#f25", "#0b0", "#ff6", "#46f", "#d6a", "#6bf", "#ddd"},
+    {"#eaeaea", "#b7141f", "#457b24", "#fc7b08", "#134eb2", "#560088", "#0e717c", "#777777",
+    "#424242", "#e83b3f", "#7aba3a", "#fd8e09", "#54a4f3", "#aa4dbc", "#26bbd1", "#aaaaaa"},
+    {"#20242d", "#b04b57", "#87b379", "#e5c179", "#7d8fa4", "#a47996", "#85a7a5", "#b3b8c3",
+    "#000000", "#b04b57", "#87b379", "#e5c179", "#7d8fa4", "#a47996", "#85a7a5", "#ffffff"},
+    {"#eee8d5", "#dc322f", "#859900", "#b58900", "#268bd2", "#d33682", "#2aa198", "#073642",
+    "#fdf6e3", "#cb4b16", "#93a1a1", "#839496", "#657b83", "#6c71c4", "#586e75", "#002b36"},
+    {"#073642", "#dc322f", "#859900", "#b58900", "#268bd2", "#d33682", "#2aa198", "#eee8d5",
+    "#002b36", "#cb4b16", "#586e75", "#657b83", "#839496", "#6c71c4", "#93a1a1", "#fdf6e3"},
 };
 
+static const char **colorname;
 
 /*
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
 unsigned int defaultfg = 7;
-unsigned int defaultbg = 258;
-static unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+unsigned int defaultbg = 0;
+static unsigned int defaultcs = 14;
+static unsigned int defaultrcs = 15;
 
 /*
  * Default shape of cursor
@@ -185,6 +172,15 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+	{ MODKEY|ShiftMask,     XK_F1,          setpalette,     {.i =  0} },
+	{ MODKEY|ShiftMask,     XK_F2,          setpalette,     {.i =  1} },
+	{ MODKEY|ShiftMask,     XK_F3,          setpalette,     {.i =  2} },
+	{ MODKEY|ShiftMask,     XK_F4,          setpalette,     {.i =  3} },
+	{ MODKEY|ShiftMask,     XK_F5,          setpalette,     {.i =  4} },
+	{ MODKEY|ShiftMask,     XK_F6,          setpalette,     {.i =  5} },
+	{ MODKEY|ShiftMask,     XK_F7,          setpalette,     {.i =  6} },
+	{ MODKEY|ShiftMask,     XK_F8,          setpalette,     {.i =  7} },
+	{ MODKEY|ShiftMask,     XK_F9,          setpalette,     {.i =  8} },
 };
 
 /*
