@@ -6,7 +6,14 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font = "Hack:pixelsize=14:antialias=true:autohint=true";
-static int borderpx = 6;
+static int borderpx = 2;
+/* Spare fonts */
+static char *font2[] = {
+/*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
+/*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
+    "Symbola:pixelsize=14:antialias=true:autohint=true"
+};
+
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -122,9 +129,9 @@ static const char *colorname[] = {
  * foreground, background, cursor, reverse cursor
  */
 unsigned int defaultfg = 7;
-unsigned int defaultbg = 0;
-static unsigned int defaultcs = 14;
-static unsigned int defaultrcs = 14;
+unsigned int defaultbg = 258;
+static unsigned int defaultcs = 256;
+static unsigned int defaultrcs = 257;
 
 /*
  * Default shape of cursor
