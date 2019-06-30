@@ -6,7 +6,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font = "Hack:pixelsize=14:antialias=true:autohint=true";
-static int borderpx = 2;
+static int borderpx = 5;
 /* Spare fonts */
 static char *font2[] = {
 /*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
@@ -74,7 +74,7 @@ char *termname = "st-256color";
 
 
 /* bg opacity */
-float alpha = 0.8;
+float alpha = 0.7;
 
 /*
  * spaces per tab
